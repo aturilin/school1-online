@@ -69,13 +69,13 @@ export function HeroSection() {
 
               {/* Orbiting labels */}
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-sm">
-                <span className="text-xs font-semibold text-cyan-400">Диагностика</span>
+                <span className="text-xs font-semibold text-cyan-400">Аудит</span>
               </div>
               <div className="absolute top-1/2 -right-4 -translate-y-1/2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm">
                 <span className="text-xs font-semibold text-blue-400">Симулятор</span>
               </div>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 backdrop-blur-sm">
-                <span className="text-xs font-semibold text-purple-400">Стратсессия</span>
+                <span className="text-xs font-semibold text-purple-400">Хакатон</span>
               </div>
             </div>
           </div>

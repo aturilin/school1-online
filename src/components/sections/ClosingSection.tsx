@@ -1,18 +1,26 @@
-import { ArrowRightIcon, SparklesIcon, UsersIcon, ShieldCheckIcon, ClockIcon } from 'lucide-react'
+import { ArrowRightIcon, SparklesIcon, UsersIcon, ShieldCheckIcon, ClockIcon, SearchIcon } from 'lucide-react'
 
 const features = [
   {
-    icon: SparklesIcon,
-    title: '4 модуля онлайн-симулятора',
-    desc: 'Личная эффективность, разработка контента, бизнес-аналитика, операционный менеджмент',
+    icon: SearchIcon,
+    title: 'Аудит вашей команды',
+    desc: 'Лично разговариваем с сотрудниками и адаптируем программу под ваши задачи',
     color: 'text-cyan-400',
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/20',
   },
   {
+    icon: SparklesIcon,
+    title: '4 модуля онлайн-симулятора',
+    desc: 'Личная эффективность, разработка контента, бизнес-аналитика, операционный менеджмент',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+  },
+  {
     icon: UsersIcon,
-    title: 'Стратсессия с руководителями',
-    desc: 'Две команды, четыре часа — два готовых прототипа для запуска',
+    title: 'Хакатон с руководителями',
+    desc: 'Две встречи по 2 часа — два готовых AI-прототипа для запуска',
     color: 'text-purple-400',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
@@ -20,18 +28,10 @@ const features = [
   {
     icon: ClockIcon,
     title: '4 недели',
-    desc: 'От диагностики до результата',
-    color: 'text-blue-400',
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/20',
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: 'Гарантия возврата',
-    desc: 'Если вам не понравится — вернём 100% денег без единого вопроса',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-500/10',
-    border: 'border-emerald-500/20',
+    desc: 'От аудита до результата',
+    color: 'text-amber-400',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20',
   },
 ]
 
@@ -74,12 +74,16 @@ export function ClosingSection() {
                       <span className="text-6xl md:text-7xl font-extrabold text-white tracking-[-0.04em] leading-none">500</span>
                       <span className="text-xl text-gray-500 font-medium">тыс ₽</span>
                     </div>
-                    <p className="text-sm text-gray-500">4 недели • до 15 участников • всё включено</p>
+                    <p className="text-sm text-gray-500">4 недели • до 10 участников • всё включено</p>
                   </div>
                   <a href="https://t.me/aturilin" target="_blank" rel="noopener noreferrer" className="group w-full inline-flex items-center justify-center gap-3 px-8 py-5 rounded-xl bg-cyan-500 text-black font-bold text-xl transition-all duration-300 glow-button hover:bg-cyan-400 hover:scale-[1.01] active:scale-[0.99]">
                     Обсудить запуск
                     <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
+                  <div className="flex items-center justify-center gap-2 mt-4 text-sm text-gray-500">
+                    <ShieldCheckIcon className="w-4 h-4 text-emerald-500/70" />
+                    <span>100% возврат, если не понравится</span>
+                  </div>
                 </div>
               </div>
             </div>

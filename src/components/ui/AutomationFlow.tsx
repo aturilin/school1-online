@@ -1,13 +1,13 @@
 import {
-  MailIcon, BrainIcon, DatabaseIcon, SendIcon,
-  CheckIcon, ZapIcon, ArrowDownIcon,
+  FileTextIcon, MessageSquareIcon, ScaleIcon, ReceiptIcon,
+  CheckIcon, ZapIcon, BrainIcon,
 } from 'lucide-react'
 
-const steps = [
-  { icon: MailIcon, title: 'Заявка', sub: 'Входящее письмо', color: 'text-gray-400', bg: 'bg-white/[0.06]', border: 'border-white/[0.08]' },
-  { icon: BrainIcon, title: 'AI-агент', sub: 'Читает и классифицирует', color: 'text-amber-400', bg: 'bg-amber-500/15', border: 'border-amber-500/25', glow: true },
-  { icon: DatabaseIcon, title: 'Проверка', sub: 'Сверка с базой', color: 'text-gray-400', bg: 'bg-white/[0.06]', border: 'border-white/[0.08]' },
-  { icon: SendIcon, title: 'Действие', sub: 'Ответ + маршрутизация', color: 'text-green-400', bg: 'bg-green-500/10', border: 'border-green-500/20' },
+const operations = [
+  { icon: ReceiptIcon, title: 'Выставить счёт', sub: 'По данным из заявки', color: 'text-amber-400', bg: 'bg-amber-500/15', border: 'border-amber-500/25' },
+  { icon: FileTextIcon, title: 'Подготовить акт', sub: 'Заполнить шаблон', color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { icon: MessageSquareIcon, title: 'Ответить клиенту', sub: 'По контексту переписки', color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { icon: ScaleIcon, title: 'Юр. шаблон', sub: 'Договор или допсоглашение', color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
 ]
 
 export function AutomationFlow() {
@@ -18,48 +18,52 @@ export function AutomationFlow() {
         <div className="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center">
           <ZapIcon className="w-3.5 h-3.5 text-amber-400" />
         </div>
-        <span className="text-white/80 font-medium text-sm">AI-пайплайн</span>
+        <span className="text-white/80 font-medium text-sm">AI-автоматизация</span>
         <div className="ml-auto flex items-center gap-1.5">
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           <span className="text-[10px] text-green-400/80 font-mono">active</span>
         </div>
       </div>
 
-      {/* Pipeline */}
-      <div className="flex-1 flex flex-col justify-center px-4 py-4 gap-0">
-        {steps.map((step, i) => {
-          const Icon = step.icon
-          const isLast = i === steps.length - 1
-          return (
-            <div key={step.title}>
-              {/* Step card */}
-              <div className={`rounded-xl ${step.bg} border ${step.border} px-4 py-3 flex items-center gap-3 relative`}>
-                {step.glow && (
-                  <div className="absolute -inset-1 bg-amber-500/5 rounded-xl blur-md -z-10" />
-                )}
-                <div className={`w-9 h-9 rounded-lg border ${step.border} ${step.bg} flex items-center justify-center shrink-0`}>
-                  <Icon className={`w-4.5 h-4.5 ${step.color}`} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className={`text-sm font-semibold ${step.color === 'text-gray-400' ? 'text-white' : step.color}`}>{step.title}</div>
-                  <div className="text-xs text-gray-500">{step.sub}</div>
-                </div>
-                {isLast && (
-                  <div className="w-5 h-5 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center">
-                    <CheckIcon className="w-3 h-3 text-green-400" />
-                  </div>
-                )}
-              </div>
+      {/* AI Agent hub */}
+      <div className="px-4 pt-4 pb-2">
+        <div className="rounded-xl bg-amber-500/[0.08] border border-amber-500/20 px-4 py-3 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0">
+            <BrainIcon className="w-4.5 h-4.5 text-amber-400" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold text-amber-400">AI-агент</div>
+            <div className="text-xs text-gray-500">Читает задачу → выбирает действие</div>
+          </div>
+        </div>
+      </div>
 
-              {/* Arrow between steps */}
-              {!isLast && (
-                <div className="flex items-center justify-center h-5">
-                  <div className="flex flex-col items-center">
-                    <div className="w-px h-2.5 bg-amber-500/30" />
-                    <ArrowDownIcon className="w-3 h-3 text-amber-400/40 -mt-1" />
-                  </div>
-                </div>
-              )}
+      {/* Connector */}
+      <div className="flex justify-center py-1">
+        <div className="flex flex-col items-center">
+          <div className="w-px h-2 bg-amber-500/30" />
+          <div className="w-3 h-3 rounded-full border border-amber-500/30 flex items-center justify-center">
+            <div className="w-1 h-1 rounded-full bg-amber-400/60" />
+          </div>
+          <div className="w-px h-2 bg-amber-500/30" />
+        </div>
+      </div>
+
+      {/* Operations grid */}
+      <div className="flex-1 px-4 pb-4 flex flex-col gap-2">
+        <div className="text-[10px] text-gray-600 uppercase tracking-wider mb-0.5">Операции</div>
+        {operations.map((op) => {
+          const Icon = op.icon
+          return (
+            <div key={op.title} className={`flex items-center gap-3 rounded-lg ${op.bg} border ${op.border} px-3 py-2.5`}>
+              <div className={`w-8 h-8 rounded-lg border ${op.border} ${op.bg} flex items-center justify-center shrink-0`}>
+                <Icon className={`w-4 h-4 ${op.color}`} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-semibold text-white">{op.title}</div>
+                <div className="text-[10px] text-gray-500">{op.sub}</div>
+              </div>
+              <CheckIcon className="w-3.5 h-3.5 text-amber-400/40 shrink-0" />
             </div>
           )
         })}

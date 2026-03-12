@@ -1,4 +1,11 @@
-import { BookOpenIcon, SparklesIcon, CheckCircleIcon, ClipboardListIcon, FileTextIcon, PresentationIcon } from 'lucide-react'
+import { SearchIcon, PenToolIcon, PaletteIcon, LayoutIcon, SparklesIcon } from 'lucide-react'
+
+const agents = [
+  { icon: SearchIcon, label: 'QA-агент', sub: 'проверяет', color: 'text-purple-400', bg: 'bg-purple-500/15', border: 'border-purple-500/25' },
+  { icon: PenToolIcon, label: 'Корректор', sub: 'правит текст', color: 'text-blue-400', bg: 'bg-blue-500/15', border: 'border-blue-500/25' },
+  { icon: PaletteIcon, label: 'Дизайнер', sub: 'визуалы', color: 'text-cyan-400', bg: 'bg-cyan-500/15', border: 'border-cyan-500/25' },
+  { icon: LayoutIcon, label: 'Оформитель', sub: 'верстает', color: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/25' },
+]
 
 export function PipelineDiagram() {
   return (
@@ -6,51 +13,60 @@ export function PipelineDiagram() {
       {/* Header */}
       <div className="px-4 py-3 bg-white/[0.03] border-b border-white/[0.06] flex items-center gap-2.5">
         <div className="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
-          <BookOpenIcon className="w-3.5 h-3.5 text-purple-400" />
+          <SparklesIcon className="w-3.5 h-3.5 text-purple-400" />
         </div>
-        <span className="text-white/80 font-medium text-sm">Контент-конвейер</span>
+        <span className="text-white/80 font-medium text-sm">Команда AI-агентов</span>
       </div>
 
       {/* Content */}
       <div className="flex-1 flex flex-col px-4 py-4 gap-3 overflow-y-auto">
-
-        {/* Input: lesson topic */}
+        {/* Input */}
         <div className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3">
-          <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1.5">Тема урока</div>
+          <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1.5">Вы задаёте</div>
           <div className="text-sm text-white">«Дроби. Сложение и вычитание»</div>
         </div>
 
-        {/* AI generates */}
-        <div className="flex items-center justify-center gap-2 py-0.5">
-          <div className="h-px flex-1 bg-purple-500/20" />
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
-            <SparklesIcon className="w-3 h-3 text-purple-400" />
-            <span className="text-[10px] text-purple-400 font-medium">AI создаёт</span>
+        {/* Agent hub */}
+        <div className="relative flex-1 flex items-center justify-center py-2">
+          {/* Central node */}
+          <div className="absolute w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center z-10">
+            <SparklesIcon className="w-4 h-4 text-purple-400" />
           </div>
-          <div className="h-px flex-1 bg-purple-500/20" />
+
+          {/* Connection lines - SVG */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid meet">
+            {/* Lines from center to corners */}
+            <line x1="160" y1="60" x2="50" y2="20" stroke="rgba(168,85,247,0.15)" strokeWidth="1" />
+            <line x1="160" y1="60" x2="270" y2="20" stroke="rgba(59,130,246,0.15)" strokeWidth="1" />
+            <line x1="160" y1="60" x2="50" y2="100" stroke="rgba(34,211,238,0.15)" strokeWidth="1" />
+            <line x1="160" y1="60" x2="270" y2="100" stroke="rgba(16,185,129,0.15)" strokeWidth="1" />
+            {/* Cross connections */}
+            <line x1="50" y1="20" x2="270" y2="20" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50" y1="100" x2="270" y2="100" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50" y1="20" x2="50" y2="100" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="270" y1="20" x2="270" y2="100" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 4" />
+          </svg>
+
+          {/* Agent cards in grid */}
+          <div className="relative w-full grid grid-cols-2 gap-2.5 z-10">
+            {agents.map((agent) => {
+              const Icon = agent.icon
+              return (
+                <div key={agent.label} className={`flex items-center gap-2.5 rounded-lg ${agent.bg} border ${agent.border} px-3 py-2`}>
+                  <Icon className={`w-3.5 h-3.5 ${agent.color} shrink-0`} />
+                  <div className="min-w-0">
+                    <div className="text-xs font-medium text-white leading-tight">{agent.label}</div>
+                    <div className="text-[10px] text-gray-500 leading-tight">{agent.sub}</div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
 
-        {/* Output cards */}
-        <div className="space-y-2">
-          {[
-            { icon: FileTextIcon, label: 'План урока', detail: 'структура + тайминг' },
-            { icon: ClipboardListIcon, label: 'Тест на 10 вопросов', detail: 'с ответами и разбором' },
-            { icon: BookOpenIcon, label: 'Домашнее задание', detail: '3 уровня сложности' },
-            { icon: PresentationIcon, label: 'Тезисы для презентации', detail: '12 слайдов' },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-3 rounded-lg bg-white/[0.03] border border-white/[0.06] px-3 py-2.5">
-              <CheckCircleIcon className="w-4 h-4 text-purple-400 shrink-0" />
-              <div className="flex-1 min-w-0">
-                <div className="text-xs font-medium text-white">{item.label}</div>
-                <div className="text-[10px] text-gray-500">{item.detail}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Summary */}
+        {/* Output */}
         <div className="rounded-lg bg-purple-500/[0.06] border border-purple-500/15 px-3 py-2 text-center">
-          <span className="text-xs text-purple-300">1 тема → полный комплект за 10 минут</span>
+          <span className="text-xs text-purple-300">Тема → готовый комплект материалов</span>
         </div>
       </div>
     </div>
