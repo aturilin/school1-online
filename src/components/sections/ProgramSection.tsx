@@ -61,7 +61,7 @@ function ModuleVisual({ type }: { type: string }) {
 }
 
 export function ProgramSection() {
-  const [openModule, setOpenModule] = useState<number>(0)
+  const [openModules, setOpenModules] = useState<Set<number>>(new Set([0]))
 
   return (
     <section id="program" className="py-24 md:py-32 relative overflow-hidden">
@@ -84,11 +84,11 @@ export function ProgramSection() {
 
         <div className="space-y-3">
           {modules.map((mod, i) => {
-            const isOpen = openModule === i
+            const isOpen = openModules.has(i)
             const IconComp = mod.icon
             return (
               <div key={mod.number} className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'bg-white/[0.04] border-white/[0.1]' : 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.03] hover:border-white/[0.08]'}`}>
-                <button onClick={() => setOpenModule(isOpen ? -1 : i)} className="w-full flex items-center gap-4 md:gap-6 p-5 md:p-6 text-left">
+                <button onClick={() => setOpenModules(prev => { const next = new Set(prev); if (next.has(i)) next.delete(i); else next.add(i); return next; })} className="w-full flex items-center gap-4 md:gap-6 p-5 md:p-6 text-left">
                   <span className="text-2xl md:text-3xl font-extrabold text-white/10 select-none shrink-0 w-10 md:w-12">{mod.number}</span>
                   <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${mod.accentBg} ${mod.accentBorder} ${mod.accentText}`}>
                     <IconComp className="w-5 h-5" />
