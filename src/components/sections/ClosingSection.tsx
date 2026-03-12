@@ -71,8 +71,8 @@ export function ClosingSection() {
                 <div className="bg-[#0a0a0a] rounded-2xl p-8 md:p-10">
                   <div className="mb-8">
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-6xl md:text-7xl font-extrabold text-white tracking-[-0.04em] leading-none">500</span>
-                      <span className="text-xl text-gray-500 font-medium">тыс ₽</span>
+                      <span className="text-5xl md:text-6xl font-extrabold text-white tracking-[-0.04em] leading-none">500 000</span>
+                      <span className="text-xl text-gray-500 font-medium">₽</span>
                     </div>
                     <p className="text-sm text-gray-500">4 недели • до 10 участников • всё включено</p>
                   </div>
@@ -80,18 +80,23 @@ export function ClosingSection() {
                     Обсудить запуск
                     <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
-                  <div className="flex items-center justify-center gap-2 mt-4 text-sm text-gray-500">
-                    <ShieldCheckIcon className="w-4 h-4 text-emerald-500/70" />
-                    <span>100% возврат, если не понравится</span>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-6 max-w-7xl mt-20">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent mb-8" />
+        {/* Money-back guarantee banner */}
+        <div className="mt-16 bg-emerald-500/10 border-y border-emerald-500/20">
+          <div className="container mx-auto px-6 max-w-7xl py-5 flex items-center justify-center gap-3">
+            <ShieldCheckIcon className="w-6 h-6 text-emerald-400 shrink-0" />
+            <p className="text-base md:text-lg font-semibold text-emerald-400">
+              100% возврат денег, если программа не подойдёт. Без вопросов.
+            </p>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl mt-8">
           <p className="text-center text-xs text-gray-700 font-medium tracking-wide">
             © {new Date().getFullYear()} AI Executive Course • Подготовлено для Онлайн-школы №1
           </p>
