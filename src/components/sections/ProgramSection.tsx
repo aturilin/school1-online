@@ -4,7 +4,6 @@ import {
   ChevronDownIcon, CheckCircle2Icon, ClockIcon, UsersIcon, WrenchIcon,
 } from 'lucide-react'
 import { TelegramChat } from '../ui/TelegramChat'
-import { PipelineDiagram } from '../ui/PipelineDiagram'
 import { DashboardMockup } from '../ui/DashboardMockup'
 import { AutomationFlow } from '../ui/AutomationFlow'
 
@@ -53,7 +52,11 @@ const modules: Module[] = [
 function ModuleVisual({ type }: { type: string }) {
   switch (type) {
     case 'telegram': return <TelegramChat />
-    case 'pipeline': return <PipelineDiagram />
+    case 'pipeline': return (
+      <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-[#0c0c0e] shadow-2xl">
+        <img src="./images/content-pipeline.jpg" alt="Контент-конвейер: Тема → Генератор → Редактор → Педагог → Готово" className="w-full h-auto" />
+      </div>
+    )
     case 'dashboard': return <DashboardMockup />
     case 'automation': return <AutomationFlow />
     default: return null
